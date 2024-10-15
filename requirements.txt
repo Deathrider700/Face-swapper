@@ -8,14 +8,22 @@ onnx==1.16.0
 insightface==0.7.3
 albucore==0.0.16
 psutil==5.9.6
-torch==2.1.2+cu118; sys_platform != 'darwin'
-torch==2.1.2; sys_platform == 'darwin'
-torchvision==0.16.2+cu118; sys_platform != 'darwin'
-torchvision==0.16.2; sys_platform == 'darwin'
-onnxruntime==1.17.1; sys_platform == 'darwin' and platform_machine != 'arm64'
-onnxruntime-silicon==1.16.3; sys_platform == 'darwin' and platform_machine == 'arm64'
-onnxruntime-gpu==1.17.1; sys_platform != 'darwin'
 tqdm==4.66.4
 ftfy
 regex
 pyvirtualcam
+
+# Compatible PyTorch and TorchVision versions for CUDA 11.8
+torch==2.2.1+cu118; sys_platform != 'darwin'
+torchvision==0.17.1+cu118; sys_platform != 'darwin'
+
+# For macOS (Darwin)
+torch==2.1.2; sys_platform == 'darwin'
+torchvision==0.16.0; sys_platform == 'darwin'
+
+# ONNX Runtime for GPU (non-Darwin)
+onnxruntime-gpu==1.17.1; sys_platform != 'darwin'
+
+# ONNX Runtime for macOS (Intel & ARM)
+onnxruntime==1.17.1; sys_platform == 'darwin' and platform_machine != 'arm64'
+onnxruntime-silicon==1.16.3; sys_platform == 'darwin' and platform_machine == 'arm64'
